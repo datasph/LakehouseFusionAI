@@ -1,6 +1,6 @@
-**GitHub Repository:** [LakehouseFusionAI](https://github.com/datasph/LakehouseFusionAI)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23796788.svg)](https://doi.org/10.5281/zenodo.23796788)
 
-**Zenodo DOI:** [10.5281/zenodo.23796788](https://doi.org/10.5281/zenodo.23796788)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/datasph/LakehouseFusionAI)
 
 
 
