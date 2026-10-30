@@ -318,23 +318,6 @@ The evaluation framework includes:
 
 The simulator is sequential and event-driven. Offered-load QPS and modelled-completion throughput QPS represent different quantities.
 
-## Implementation Scope and Limitations
-
-For scientific transparency, the following implementation boundaries must be considered:
-
-1. The repository does not implement a physical Delta Lake, Apache Spark, MinIO, Docker orchestration, or Linux traffic-control environment.
-2. The specified four-edge and one-cloud physical testbed is not included.
-3. Real remote multi-host partition transfers and physically measured network bandwidth are not implemented.
-4. Cache behaviour is represented through stateful LRU metadata and modelled savings.
-5. The SQLite backend does not execute cache retrieval through the logical experiment model.
-6. Predictor training uses explored actions rather than all counterfactual actions.
-7. The `no_edge_preprocess` ablation is a simplified diagnostic.
-8. Synthetic time and cost coefficients require calibration using actual measurements.
-9. The dataset preparation adapters and logical evaluation engine are not currently integrated into a complete dataset-driven experimental pipeline.
-10. The supplied implementation is not a verified reproduction of the manuscript's numerical results.
-
-These limitations distinguish the functional research reference implementation from a complete physical cloud–edge deployment.
-
 ## Reproducibility
 
 The framework supports reproducible training and evaluation through:
@@ -357,16 +340,6 @@ Reproducing the manuscript's physical benchmark results requires implementing an
 *AI-Driven Data Lakehouse Optimization Reduces Cost and Latency in Hybrid Cloud–Edge Analytics*
 
 This repository provides a functional research reference implementation aligned with the research methodology. It supports algorithm development, logical experiment evaluation, SQL storage validation, and reproducibility-oriented experimentation.
-
-## Citation
-
-If you use this implementation in academic research, please cite the associated research work after its publication.
-
-```text
-Title: AI-Driven Data Lakehouse Optimization Reduces Cost and Latency in Hybrid Cloud–Edge Analytics
-Year: 2026
-DOI: [Add DOI when available]
-```
 
 ## Acknowledgements
 
