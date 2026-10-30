@@ -3,8 +3,6 @@
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/datasph/LakehouseFusionAI)
 
 
-[DOI](https://doi.org/10.5281/zenodo.23796788) [GitHub](https://github.com/datasph/LakehouseFusionAI)
-
 # LakehouseFusionAI: AI-Driven Data Lakehouse Optimization for Hybrid Cloud–Edge Analytics
 
 **A functional research reference implementation for cost-aware and latency-aware data lakehouse optimization**
