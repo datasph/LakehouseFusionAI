@@ -1,0 +1,18 @@
+{
+  "predictors": [
+    {
+      "val_mse_log": 0.8531531095504761,
+      "epochs": 60
+    },
+    {
+      "val_mse_log": 0.005058028735220432,
+      "epochs": 58
+    }
+  ],
+  "dqn": {
+    "transitions": 260,
+    "updates": 197,
+    "last_loss": 152.4001007080078
+  },
+  "training_records": 130
+}

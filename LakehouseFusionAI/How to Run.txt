@@ -1,0 +1,25 @@
+LakehouseFusionAI - HOW TO RUN
+============================
+1. Install Python 3.11 (recommended).
+2. In a terminal, change directory to LakehouseFusionAI.
+3. Run: pip install -r requirements.txt
+4. Run: python main.py sql-demo
+   This validates actual local SQLite edge/cloud ingestion, syncing, snapshots and SQL analytics.
+5. Run: python main.py train --n 350 --epochs 3
+   Creates checkpoints/predictors.pt and checkpoints/dqn.pt.
+6. Run: python main.py evaluate --n 200 --runs 10 --qps 50 --network normal
+   Creates results/run_metrics.csv, query_traces.csv, summary.csv, statistics.csv.
+7. Run: python main.py evaluate --n 200 --runs 10 --qps 200 --network constrained --ablation --out results/stress
+8. Run: python -m pytest tests -q
+
+For authentic data (download files yourself):
+python main.py prepare --dataset taxi --input your_taxi.csv --out processed_taxi.csv
+python main.py prepare --dataset debs --input your_debs.csv --out processed_debs.csv
+python main.py prepare --dataset gdelt --input your_gdelt.csv --out processed_gdelt.csv
+
+IMPORTANT: The experimental QPS/latency/cost engine is a stateful software emulation, NOT
+physical Spark/MinIO/Delta Lake. The SQLite pipeline executes real SQL independently.
+Do NOT present modelled metrics as experimentally measured cloud/edge performance.
+See README.md for architecture, limitations, and reproducibility.
+9. Run: python main.py plot --metrics results/run_metrics.csv --out results/figures
+   Generates five 600-dpi figures displaying modelled results only.
