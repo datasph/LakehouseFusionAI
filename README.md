@@ -175,8 +175,7 @@ LakehouseFusionAI/
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/LakehouseFusionAI.git
-
+git clone https://github.com/datasph/LakehouseFusionAI 
 cd LakehouseFusionAI
 ```
 
@@ -358,10 +357,8 @@ This repository provides a functional research reference implementation aligned 
 If you use this implementation in academic research, please cite the associated research work after its publication.
 
 ```text
-Author(s): [Add author details]
 Title: AI-Driven Data Lakehouse Optimization Reduces Cost and Latency in Hybrid Cloud–Edge Analytics
-Publication: [Add journal/conference details]
-Year: [Add publication year]
+Year: 2026
 DOI: [Add DOI when available]
 ```
 
@@ -371,10 +368,7 @@ The implementation uses publicly available dataset sources and established machi
 
 ## License
 
-A formal open-source license has not yet been specified for this repository. Please check the repository's licensing information before redistributing or reusing the source code.
+This project is licensed under the MIT License.
 
 ---
 
-**LakehouseFusionAI — Functional Research Reference Implementation**
-
-*Intelligent Data Lakehouse Optimization for Hybrid Cloud–Edge Analytics.*
