@@ -1,3 +1,9 @@
+**GitHub Repository:** [LakehouseFusionAI](https://github.com/datasph/LakehouseFusionAI)
+
+**Zenodo DOI:** [10.5281/zenodo.23796788](https://doi.org/10.5281/zenodo.23796788)
+
+
+
 # LakehouseFusionAI: AI-Driven Data Lakehouse Optimization for Hybrid Cloud–Edge Analytics
 
 **A Functional Research Reference Implementation for Intelligent, Cost-Aware and Latency-Aware Data Lakehouse Optimization**
