@@ -3,203 +3,189 @@
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/datasph/LakehouseFusionAI)
 
 
+[DOI](https://doi.org/10.5281/zenodo.23796788) [GitHub](https://github.com/datasph/LakehouseFusionAI)
 
 # LakehouseFusionAI: AI-Driven Data Lakehouse Optimization for Hybrid Cloud–Edge Analytics
 
-**A Functional Research Reference Implementation for Intelligent, Cost-Aware and Latency-Aware Data Lakehouse Optimization**
+**A functional research reference implementation for cost-aware and latency-aware data lakehouse optimization**
 
 ## Overview
 
-LakehouseFusionAI is a research-oriented implementation designed to investigate intelligent data lakehouse optimization in hybrid cloud–edge environments. The framework combines predictive resource estimation, Deep Q-Network (DQN)-based decision-making, adaptive workload placement, and multi-factor execution modelling to explore cost-efficient and latency-aware query execution.
+LakehouseFusionAI is a research-oriented software implementation for investigating intelligent data lakehouse optimization in hybrid cloud–edge environments. It combines predictive resource estimation, Deep Q-Network (DQN)-based decision-making, adaptive workload placement, and multi-factor execution modelling.
 
-The implementation provides two complementary components:
+The repository contains two complementary components:
 
-1. **Functional SQL Lakehouse Backend:** Implements SQLite-based ACID transactions, data validation, deduplicated ingestion, edge buffering, idempotent commits, synchronization, and local/cloud SQL operations.
-2. **Hybrid Cloud–Edge Experiment Engine:** Models workload placement, resource queues, network bandwidth, round-trip time (RTT), caching, replication, service-level agreement (SLA) decisions, execution costs, and workload traces.
+1. **Functional SQL lakehouse backend:** SQLite-based ACID transactions, input validation, deduplicated ingestion, edge buffering, idempotent commits, synchronization, and SQL operations.
 
-The framework provides a reproducible foundation for algorithm development, functional testing, and methodology validation.
+2. **Hybrid cloud–edge experiment engine:** Stateful logical modelling of workload placement, resource queues, bandwidth, round-trip time (RTT), caching, replication, service-level agreement (SLA) outcomes, costs, and workload traces.
+
+The implementation supports algorithm development, functional testing, and controlled experimentation. The two components have different evidence and reproducibility scopes, described below.
+
+## Relationship to the Research Manuscript
+
+**Associated manuscript:** *AI-Driven Data Lakehouse Optimization Reduces Cost and Latency in Hybrid Cloud–Edge Analytics*.
+
+The manuscript presents LakehouseFusionAI as an integrated hybrid cloud–edge data lakehouse architecture with learning-based prediction, DQN execution planning, data ingestion, caching, synchronization, and adaptive placement. This repository implements its core algorithmic ideas in a functional SQL backend and a logical hybrid-execution evaluation environment.
+
+| Aspect | Released implementation | Scope of evidence |
+| ------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Data ingestion and SQL operations | SQLite-backed local/cloud data operations | Functional software behavior |
+| Edge–cloud scheduling, caching and replication | Stateful logical hybrid environment | Model-generated behavior |
+| Latency, cost, throughput and SLA evaluations | Logical experiment engine | Simulated measurements, not physically measured distributed-system benchmarks |
+| Statistical analysis | Matched logical runs; paired Wilcoxon tests and Holm correction | Inference about the implemented model under its assumptions |
+| Physical distributed infrastructure | No deployed Spark, Delta Lake, MinIO or multi-node Docker testbed in this software release | Not reproduced by this repository |
+
+**Reproducibility boundary:** The source code does not establish that the performance values reported in the manuscript were measured on a physically deployed distributed testbed. Reproducing any infrastructure-level results requires separately documented infrastructure, workload configurations, execution logs, and matched run-level observations. The repository's logical experiment outputs must not be substituted for independently measured physical-testbed results.
 
 ## Key Features
 
 - Hybrid cloud–edge workload execution modelling.
-- Deep Q-Network (DQN)-based execution policy learning.
-- Predictive resource estimation using multilayer perceptrons.
-- Adaptive workload placement and feasible-action selection.
-- Network bandwidth and RTT-aware transfer modelling.
-- Stateful cache and replica management.
-- SLA-aware execution decisions.
-- Cost and latency estimation.
-- SQLite-based ACID-compliant data storage.
-- Edge data ingestion, buffering, and synchronization.
-- Dataset preparation adapters for public datasets.
-- Matched baseline comparisons and ablation experiments.
-- Paired Wilcoxon statistical testing with Holm correction.
-- Automated functional testing.
-- High-resolution scientific figure generation.
+
+- DQN-based execution-policy learning.
+
+- Predictive latency and cost estimation using multilayer perceptrons (MLPs).
+
+- Feasibility-aware execution placement and action masking.
+
+- Bandwidth- and RTT-aware network-transfer modelling.
+
+- Stateful cache, replication, and resource-queue modelling.
+
+- SLA-aware decisions and cost–latency evaluation.
+
+- SQLite-based transactional SQL storage and synchronization.
+
+- Dataset preparation adapters for public data sources.
+
+- Matched baseline comparisons, ablation experiments, and run-level outputs.
+
+- Paired Wilcoxon signed-rank tests with Holm multiple-comparison adjustment.
+
+- Automated functional testing and high-resolution figure generation.
 
 ## Framework Architecture
 
-The implementation consists of two distinct execution paths.
-
 ### 1. Functional SQL Data Path
 
-The storage component provides actual SQL-based data operations through SQLite.
-
-Its capabilities include:
-
-- Transaction-based data ingestion.
-- ACID transaction support.
-- Input data validation.
-- Duplicate detection and deduplicated ingestion.
-- Edge-side buffering.
-- Idempotent synchronization commits.
-- Local and cloud SQL reads.
-- Query correctness validation.
+The storage module performs actual SQLite operations, including transactional ingestion, ACID transaction support, schema and input validation, duplicate detection, edge-side buffering, idempotent synchronization commits, local/cloud SQL reads, and query correctness checks. The use of separate logical edge/cloud components does not itself constitute a physical distributed database deployment.
 
 ### 2. Logical Hybrid Execution Engine
 
-The experiment engine provides a stateful simulation of hybrid cloud–edge execution.
+The experiment engine provides stateful, sequential, event-driven simulation of hybrid edge/cloud resource availability, placement choices, queue contention, network delays, caching and replication state, SLA decisions, and modelled execution outcomes.
 
-It models:
-
-- Edge and cloud resource availability.
-- Workload placement decisions.
-- Resource queue contention.
-- Network transfer delays.
-- Bandwidth and RTT effects.
-- Cache and replica state transitions.
-- SLA satisfaction decisions.
-- Execution cost and latency.
-- Workload execution traces.
-
-**Scientific implementation note:** The hybrid execution engine is a logical emulation. It does not constitute a physical Spark, Delta Lake, or MinIO deployment. Its latency, throughput, and cost values are model-generated outcomes rather than measurements from an actual distributed cloud–edge infrastructure.
+**Scientific implementation note:** Simulated latency, cost, and throughput are generated by the logical execution model. They should not be represented as performance measurements collected from Spark, Delta Lake, MinIO, or a physically distributed cloud–edge infrastructure.
 
 ## Algorithmic Components
 
 ### Algorithm 1: Edge Data Ingestion and Synchronization
 
-Implemented primarily through `storage.EdgeAgent` and the logical resource modelling provided by `core.HybridEnvironment`.
-
-The storage component handles real ingestion, buffering, and synchronization operations, while the experiment engine models resource and network-transfer effects.
+Implemented principally through storage.EdgeAgent, with logical resource and network effects modelled in core.HybridEnvironment. The storage module performs ingestion, buffering, and synchronization operations; the experiment engine models transfer effects.
 
 ### Algorithm 2: Predictive Resource Estimation and DQN-Based Decision-Making
 
-The learning component incorporates:
+The learning module provides two MLP regressors for performance prediction and a DQN execution policy. The documented network configurations use hidden layers of 128 and 64 neurons.
 
-**Predictive Models**
-- Two multilayer perceptron (MLP) regressors.
-- Hidden-layer architecture: 128 and 64 neurons.
+DQN configuration:
 
-**Deep Q-Network**
-- Hidden-layer architecture: 128 and 64 neurons.
-- Epsilon-based exploration.
-- Target network updates every 200 gradient updates.
-- Replay memory capacity: 50,000 transitions.
-- Discount factor: 0.95.
-- Batch size: 64.
-- Adam optimizer with a learning rate of 0.0001.
-- Gradient clipping.
+| Parameter | Configuration |
+| ----------------------- | ---------------------------- |
+| Hidden layers | 128, 64 |
+| Exploration | Epsilon-based |
+| Target-network update | Every 200 gradient updates |
+| Replay capacity | 50,000 transitions |
+| Discount factor | 0.95 |
+| Batch size | 64 |
+| Optimizer | Adam |
+| DQN learning rate | 0.0001 |
+| Stability | Gradient clipping |
 
-The evaluation component performs feasible-action policy selection.
+Feasible-action selection is handled in the evaluation workflow. Model-specific configurations and checkpoint behavior should be checked against the source code when altering experiments.
 
 ### Algorithm 3: Hybrid Execution and Resource Optimization
 
-Implemented through `core.HybridEnvironment.step`.
-
-The logical execution engine models:
-
-- Workload placement.
-- Local and cloud computation.
-- Caching and replication.
-- Network transfer costs.
-- Resource contention.
-- SLA-related execution decisions.
-
-Actual SQL operations are independently executed through `storage.SQLLakehouse`.
+Implemented through core.HybridEnvironment.step, which models placement, edge/cloud computation, caching, replication, network-transfer costs, resource contention, and SLA outcomes. Actual SQL operations are independently supported through storage.SQLLakehouse.
 
 ## Supported Datasets
 
-The framework provides data preparation adapters for three public datasets.
+The repository provides preparation adapters for three public datasets:
 
-| Dataset | Data Category | Application |
-|---|---|---|
-| NYC Taxi Trip Records | Batch data | Batch workload preparation |
-| DEBS 2014 Smart Home | Streaming data | Smart-home event preparation |
-| GDELT | Event data | Event-oriented data preparation |
+| Dataset | Category | Intended use |
+| --------------------- | ------------ | ---------------------------- |
+| NYC Taxi Trip Records | Batch | Batch-workload preparation |
+| DEBS 2014 Smart Home | Streaming | Smart-home event preparation |
+| GDELT | Event-driven | Event-oriented preparation |
 
-### Official Dataset Sources
+### Official Data Sources
 
-- NYC Taxi and Limousine Commission: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
-- GDELT Project: https://www.gdeltproject.org/data.html
-- DEBS Grand Challenges: https://debs.org/grand-challenges/
+- [NYC Taxi Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
-**Note:** Dataset files must be obtained separately from their official sources. The repository does not include the complete original datasets. The `prepare` command performs actual dataset transformations, whereas the current evaluation command generates deterministic logical workload descriptors rather than directly executing experiments on the prepared dataset records.
+- [DEBS 2014 Grand Challenge](https://debs.org/grand-challenges/2014/)
+
+- [GDELT Project](https://www.gdeltproject.org/data.html)
+
+Original dataset files are not bundled; obtain them separately and comply with their terms. The prepare command transforms dataset records, whereas the existing evaluate command generates logical workload descriptors and does **not** execute its benchmark directly on those prepared records. Do not describe simulator results as dataset-driven physical benchmark measurements.
 
 ## Project Structure
 
 ```text
 LakehouseFusionAI/
-│
-├── main.py
-├── requirements.txt
-│
-├── lakehousefusion/
-│   ├── __init__.py
-│   ├── core.py
-│   ├── learning.py
-│   ├── evaluation.py
-│   ├── storage.py
-│   ├── datasets.py
-│   └── plots.py
-│
-├── tests/
-│
-├── data/
-│
-├── results/
-│
-└── checkpoints/
+ ├── main.py
+ ├── requirements.txt
+ ├── lakehousefusion/
+ │   ├── __init__.py
+ │   ├── core.py
+ │   ├── learning.py
+ │   ├── evaluation.py
+ │   ├── storage.py
+ │   ├── datasets.py
+ │   └── plots.py
+ ├── tests/
+ ├── data/
+ ├── results/
+ └── checkpoints/
 ```
 
 ### Core Modules
 
-| Module | Description |
-|---|---|
-| `core.py` | Hybrid environment, workloads, states, action masks, resource queues, and reward modelling. |
-| `learning.py` | Predictive MLP regressors and DQN implementation. |
-| `evaluation.py` | Baseline comparisons, ablation experiments, summaries, and statistical analysis. |
-| `storage.py` | SQLite-based ACID storage, edge ingestion, buffering, and synchronization. |
-| `datasets.py` | CSV and Parquet dataset preparation adapters. |
-| `main.py` | Command-line interface for training, evaluation, preparation, and demonstrations. |
-| `plots.py` | Experimental figure generation. |
-| `tests/` | Automated functional tests. |
+| Module | Responsibility |
+| ------------- | --------------------------------------------------------------------- |
+| core.py | Hybrid environment, action masks, queue states and reward modelling |
+| learning.py | MLP regressors and DQN |
+| evaluation.py | Baseline comparisons, ablation, summaries and statistical analysis |
+| storage.py | SQLite storage, ingestion, buffering and synchronization |
+| datasets.py | CSV/Parquet preparation adapters |
+| plots.py | Scientific plots |
+| main.py | Command-line interface |
+| tests/ | Functional tests |
 
 ## Installation and Requirements
 
-**Recommended Python Version:** Python 3.11
+**Recommended Python version:** 3.11.
 
-### Step 1: Clone the Repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/datasph/LakehouseFusionAI 
-cd LakehouseFusionAI
+git clone https\://github.com/datasph/LakehouseFusionAI.git\
 ```
+&#x20;cd LakehouseFusionAI
 
-Replace `YOUR_USERNAME` with your GitHub username.
+If the source files are inside a nested LakehouseFusionAI/ directory in your checkout, enter that directory before executing main.py.
 
-### Step 2: Create a Virtual Environment
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate the environment.
-
-**Windows:**
+**Windows Command Prompt:**
 
 ```bash
 .venv\Scripts\activate
 ```
+
+**Windows PowerShell:**
+
+.\\.venv\Scripts\Activate.ps1
 
 **Linux/macOS:**
 
@@ -207,147 +193,178 @@ Activate the environment.
 source .venv/bin/activate
 ```
 
-### Step 3: Install Dependencies
+### 3. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+```
+
+For optional Parquet input/output support:
+
+```bash
+python -m pip install pyarrow
 ```
 
 ## Execution Guide
 
-### 1. SQL Lakehouse Demonstration
+Run the following commands from the directory containing main.py.
+
+### 1. Functional SQL Demonstration
 
 ```bash
 python main.py sql-demo
 ```
 
-Executes the functional SQL data-path demonstration.
+Demonstrates the SQLite-backed data path and its operations; this is not a distributed Spark deployment.
 
-### 2. Model Training
+### 2. Train the Learning Models
 
 ```bash
 python main.py train --n 350 --epochs 3
 ```
 
-A shorter training run can be executed using:
+For a short smoke test:
 
 ```bash
 python main.py train --n 100 --epochs 1
 ```
 
-Training and evaluation use isolated random seeds. The training seed is 42, while evaluation seeds start from 10001.
+The documented training seed is 42; evaluation seeds begin at 10001. These refer to the repository's software workflow, not necessarily to seed identifiers used to generate manuscript benchmark tables.
 
-### 3. Normal Network Evaluation
+### 3. Normal-Network Logical Evaluation
 
 ```bash
 python main.py evaluate --n 200 --runs 10 --qps 50 --network normal
 ```
 
-### 4. Constrained Network Evaluation
+### 4. Constrained-Network Logical Evaluation and Ablation
 
 ```bash
 python main.py evaluate --n 200 --runs 10 --qps 200 --network constrained --out results/stress --ablation
 ```
 
-The evaluation process generates:
+The evaluation command is documented to produce:
 
-- `run_metrics.csv`
-- `query_traces.csv`
-- `summary.csv`
-- `statistics.csv`
-- `metadata.json`
+- run_metrics.csv — run-level modelled outcomes.
 
-### 5. Dataset Preparation
+- query_traces.csv — query-level logical traces.
 
-**NYC Taxi:**
+- summary.csv — aggregated results.
+
+- statistics.csv — statistical comparisons.
+
+- metadata.json — experiment metadata.
+
+Inspect the generated output directories for each run; the two evaluation commands above may use different output destinations.
+
+### 5. Prepare Public Data
+
+Obtain suitable CSV input files from the official dataset sources before executing:
+
+**NYC Taxi**
 
 ```bash
 python main.py prepare --dataset taxi --input data/raw/taxi.csv --out data/processed/taxi.csv
 ```
 
-**DEBS 2014:**
+**DEBS 2014**
 
 ```bash
 python main.py prepare --dataset debs --input data/raw/debs.csv --out data/processed/debs.csv
 ```
 
-**GDELT:**
+**GDELT**
 
 ```bash
 python main.py prepare --dataset gdelt --input data/raw/gdelt.csv --out data/processed/gdelt.csv
 ```
 
-For Parquet input/output support, install:
+Prepared data outputs are separate from the logical evaluation workload generator.
 
-```bash
-pip install pyarrow
-```
-
-### 6. Generate Experimental Figures
+### 6. Generate Figures
 
 ```bash
 python main.py plot --metrics results/run_metrics.csv --out results/figures
 ```
 
-The plotting command generates five 600-DPI PNG charts with explicitly labelled modelled outcomes.
+This command is documented to generate five 600-DPI PNG plots of **modelled** outcomes. Ensure the metrics path points to an existing evaluation output.
 
-### 7. Run Automated Tests
+### 7. Run Functional Tests
 
 ```bash
 python -m pytest tests -q
 ```
 
-## Experimental Evaluation
+## Experimental Evaluation and Statistics
 
-The evaluation component supports comparisons between different execution strategies using matched incoming query traces for each seed.
+The evaluation module supports cloud-only, edge-only, static-hybrid and LakehouseFusionAI comparisons under matched logical workload traces. It reports run-level metrics, query-level traces, latency, cost, throughput, SLA outcomes, baseline comparisons, and ablations.
 
-The evaluation framework includes:
+The documented statistical workflow applies two-sided paired Wilcoxon signed-rank tests with Holm adjustment within each metric and condition. The experimental run, not each query in the same run, is the appropriate unit for paired run-level inference. The meaning of each test depends on how runs and matching seeds were generated; review metadata.json, run_metrics.csv, and statistics.csv together.
 
-- Run-level performance metrics.
-- Query-level execution traces.
-- Latency analysis.
-- Cost analysis.
-- Throughput analysis.
-- SLA satisfaction analysis.
-- Baseline comparisons.
-- Ablation experiments.
-- Paired two-sided Wilcoxon statistical testing.
-- Holm multiple-comparison correction within each condition and metric.
+**Statistical interpretation:** Significant differences in logically simulated outcomes establish differences within the simulation and its assumptions. They do not, by themselves, validate performance improvements on real multi-node infrastructure. The repository's statistical output is not a substitute for paired measurements underlying any manuscript-specific Wilcoxon table unless the same data were actually used.
 
-**Important:** Statistical significance obtained from the logical experiment engine does not establish production-level performance improvements. Latency, throughput, and cost are modelled rather than physically measured against external infrastructure.
-
-The simulator is sequential and event-driven. Offered-load QPS and modelled-completion throughput QPS represent different quantities.
+Offered workload rate (QPS) and completed throughput (QPS) are distinct quantities in the sequential event-driven model.
 
 ## Reproducibility
 
-The framework supports reproducible training and evaluation through:
+The software supports reproducible algorithm-level research through controlled seeds, separated training/evaluation workflows, matched logical query traces, checkpoints, CSV output, JSON metadata, tests, and figures.
 
-- Controlled random seeds.
-- Isolated training and evaluation environments.
-- Consistent query traces across method comparisons.
-- Saved model checkpoints.
-- Structured CSV experiment outputs.
-- JSON experiment metadata.
-- Automated functional tests.
-- High-resolution experimental figures.
+### Reproducibility Boundary and Manuscript Benchmark Alignment
 
-Reproducing the manuscript's physical benchmark results requires implementing and validating the specified infrastructure and calibrating the model against actual measurements.
+The following distinctions must be preserved when interpreting this release:
+
+1. **Functional reproducibility:** SQLite ingestion, buffering, SQL and synchronization functions can be executed with the released code.
+
+2. **Algorithmic reproducibility:** The predictive models and DQN policy can be trained and evaluated under the implemented logical environment.
+
+3. **Simulation reproducibility:** Modelled latency, costs, SLA results, throughput, and paired statistical comparisons can be regenerated using corresponding settings and seeds.
+
+4. **Infrastructure-level reproducibility:** Physical multi-node Spark/Delta Lake/MinIO/Docker experiments and their measured numerical outputs are **not supplied or reproduced by this release**.
+
+5. **Manuscript numerical comparisons:** The specific manuscript tables and figure values must be traced to their original measurement files or original simulation runs. The repository README does not certify that its generated metrics are identical to those reported in the manuscript.
+
+Reproducing independently obtained infrastructure results requires the original deployment configuration, workload traces, measurement definitions, execution logs, run identifiers, paired observations, and scripts used to calculate tables and figures. If such materials are released later, they should be versioned and cited separately.
+
+## Implementation Scope and Limitations
+
+- SQLite is used for the functional SQL data path; it is not a replacement for Spark or a production-scale distributed lakehouse.
+
+- The cloud–edge performance engine is a logical simulation, not a physical multi-node deployment.
+
+- Network latency, bandwidth limitations and resource contention are modelled within software.
+
+- The logical evaluation command does not directly benchmark the full original NYC Taxi, DEBS or GDELT records.
+
+- Cost outputs are model-defined quantities, not provider billing measurements.
+
+- Simulation outputs alone cannot validate production-scale guarantees, real-world scalability or physical SLA compliance.
+
+- The code archive does not demonstrate that manuscript benchmark numbers were obtained from a physical testbed.
+
+These limitations define the current public implementation and should remain consistent with the Methods, Results and Code Availability statements of the associated manuscript.
 
 ## Research Context
 
-**Research Title:**
+**Associated research title:** *AI-Driven Data Lakehouse Optimization Reduces Cost and Latency in Hybrid Cloud–Edge Analytics*.
 
-*AI-Driven Data Lakehouse Optimization Reduces Cost and Latency in Hybrid Cloud–Edge Analytics*
+LakehouseFusionAI provides a functional reference implementation for the manuscript's algorithmic concepts and a controlled environment for investigating resource-aware placement and optimization. The paper's experimental claims should be interpreted in accordance with the actual provenance of their measurements.
 
-This repository provides a functional research reference implementation aligned with the research methodology. It supports algorithm development, logical experiment evaluation, SQL storage validation, and reproducibility-oriented experimentation.
+## Citation and Code Availability
+
+**GitHub:** [https://github.com/datasph/LakehouseFusionAI](https://github.com/datasph/LakehouseFusionAI)
+
+**Archived software release:** LakehouseFusionAI v1.0.0, Zenodo, 30 October 2026.
+
+**Version-specific DOI:** [https://doi.org/10.5281/zenodo.23796788](https://doi.org/10.5281/zenodo.23796788)
+
+Cite the Zenodo software release when using this version of the implementation. When the associated research article is published, cite the article separately for its research findings. A later GitHub README edit does not automatically update the archived Zenodo v1.0.0 snapshot; publish a new archive version if the revised documentation must itself be part of the preserved release.
 
 ## Acknowledgements
 
-The implementation uses publicly available dataset sources and established machine-learning and data-processing libraries. Dataset authors and providers retain their respective rights and licensing terms.
+The implementation uses public dataset sources and established machine-learning and data-processing libraries. Dataset providers and software contributors retain their respective licensing and attribution rights.
 
 ## License
 
 This project is licensed under the MIT License.
 
----
 
